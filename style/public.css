@@ -49,7 +49,18 @@ body {
 /* navigation bar */
 
 .navbar .container-fluid {
-    width: 60rem;
+    max-width: 60rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navbar brand visibility handled via CSS (no JS) */
+@media (max-width: 36rem) { /* <= 576px */
+    #brand { display: inline-block; }
+}
+@media (min-width: 36.0625rem) { /* > 576px */
+    #brand { display: none; }
 }
 
 .navbar-dark .navbar-nav li .nav-link {
@@ -110,7 +121,9 @@ body {
 @media only screen and (max-width: 64rem) {
     
     .navbar .container-fluid {
-        width: 100vw;
+        /* Avoid Safari's 100vw overflow issue */
+        width: 100%;
+        max-width: 100%;
     }
 
     .navbar-dark .navbar-nav li .nav-link {
@@ -127,3 +140,8 @@ body {
     }
     
 }
+
+/* Improve cross-browser sticky behavior (older Safari)
+   and ensure nav items distribute evenly in Safari */
+.sticky-top { position: -webkit-sticky; }
+.nav-fill .nav-item { flex: 1 1 0%; }
